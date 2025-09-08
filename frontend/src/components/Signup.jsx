@@ -52,7 +52,7 @@ const Signup = () => {
       const registerRes = await API.post("api/auth/register", formData);
       
       // If registration successful, automatically log them in
-      const loginRes = await API.post("/auth/login", {
+      const loginRes = await API.post("api/auth/login", {
         email: formData.email,
         password: formData.password
       });
