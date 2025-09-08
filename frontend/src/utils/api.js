@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://testcasegenerator-ias5.onrender.com",
+  baseURL: "https://testcasegenerator-1-jxj7.onrender.com",
   timeout: 10000, // 10 second timeout
 });
 
