@@ -17,7 +17,7 @@ const TestCasePage = () => {
 
   const loadSavedTestCases = async () => {
     try {
-      const response = await API.get("/testcase");
+      const response = await API.get("/api/testcase");
       setSavedTestCases(response.data || []);
     } catch (error) {
       console.error("Error loading saved test cases:", error);
@@ -33,7 +33,7 @@ const TestCasePage = () => {
     setTestCases([]);
 
     try {
-      const response = await API.post("/testcase/generate", { code: code.trim() });
+      const response = await API.post("/api/testcase/generate", { code: code.trim() });
 
       // Ensure response is always an array
       const cases = Array.isArray(response.data.testCases)
@@ -57,7 +57,7 @@ const TestCasePage = () => {
     if (!testCases.length) return setError("No test cases to save.");
 
     try {
-      await API.post("/testcase/create", {
+      await API.post("/api/testcase/create", {
         functionName: "Generated Test Cases",
         input: code,
         expectedOutput: JSON.stringify(testCases, null, 2),
@@ -74,7 +74,7 @@ const TestCasePage = () => {
   const handleDeleteTestCase = async (id) => {
     if (!window.confirm("Are you sure?")) return;
     try {
-      await API.delete(`/testcase/${id}`);
+      await API.delete(`/api/testcase/${id}`);
       await loadSavedTestCases();
     } catch (error) {
       setError(error.response?.data?.message || error.message || "Error deleting test case.");
